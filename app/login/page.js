@@ -155,3 +155,27 @@ const handleLogin = () => {
 <button style={button} onClick={handleLogin} disabled={loading}>
   {loading ? "Logging in..." : "Login to LMS"}
 </button>
+
+if (status === "Locked") {
+  return (
+    <div style={{ ...card, opacity: 0.6 }}>
+      <h3>{day} – {title}</h3>
+      <p>{description}</p>
+      <p style={{ color: "#64748b", fontSize: "14px" }}>
+        🔒 Complete previous lessons to unlock
+      </p>
+    </div>
+  );
+}
+if (status === "Locked") {
+  return (
+    <div style={{ ...card, opacity: 0.6 }}>
+      <h3>{day} – {title}</h3>
+      <p>{description}</p>
+      <p style={{ color: "#64748b", fontSize: "14px" }}>
+        🔒 Complete previous lessons to unlock
+      </p>
+    </div>
+  );
+}
+
