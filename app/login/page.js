@@ -127,3 +127,31 @@ const note = {
   fontSize: "12px",
   color: "#64748b"
 };
+
+const [loading, setLoading] = useState(false);
+const handleLogin = () => {
+  setError("");
+  setLoading(true);
+
+  setTimeout(() => {
+    if (!name.trim()) {
+      setError("Please enter your name");
+      setLoading(false);
+      return;
+    }
+
+    if (password !== "9241") {
+      setError("Invalid password");
+      setLoading(false);
+      return;
+    }
+
+    localStorage.setItem("studentName", name);
+    router.push("/dashboard");
+  }, 800);
+};
+
+
+<button style={button} onClick={handleLogin} disabled={loading}>
+  {loading ? "Logging in..." : "Login to LMS"}
+</button>
