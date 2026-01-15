@@ -112,3 +112,8 @@ section {
     font-size: 22px;
   }
 }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
