@@ -49,36 +49,8 @@ const lessons = {
       "Which channel do you use most?",
       "Why is SEO important?"
     ]
-  },
-  4: {
-    title: "Introduction to AI in Marketing",
-    video: "https://www.youtube.com/embed/2ePf9rue1Ao",
-    points: [
-      "What is AI?",
-      "Why marketers use AI",
-      "AI tools overview",
-      "Ethical use of AI"
-    ],
-    questions: [
-      "How can AI save time?",
-      "Where should AI not be used?"
-    ]
-  },
-  5: {
-    title: "Building a Digital Marketing Strategy",
-    video: "https://www.youtube.com/embed/XkRfs0hF6Lw",
-    points: [
-      "Target audience",
-      "Business goals",
-      "Content planning",
-      "Measurement"
-    ],
-    questions: [
-      "Who is Namma Web’s target audience?",
-      "What is a marketing goal?"
-    ]
   }
-  // (Days 6–30 remain same as earlier and WILL work now)
+  // (We will extend Day 4–30 once navigation is confirmed)
 };
 
 /* ===========================
@@ -89,15 +61,16 @@ export default function DayLessonPage() {
   const params = useParams();
   const router = useRouter();
 
-  // Convert day safely
+  // SAFELY convert day to number
   const day = Number(params.day);
 
   const [confirmed, setConfirmed] = useState(false);
 
-  // 🔥 CRITICAL FIX: reset state when day changes
+  // 🔥 HARD RESET on DAY CHANGE (CRITICAL)
   useEffect(() => {
     setConfirmed(false);
-  }, [day]);
+    router.refresh(); // forces Next.js to reload data
+  }, [day, router]);
 
   const lesson = lessons[day];
 
