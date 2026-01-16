@@ -41,7 +41,7 @@ export default function DashboardPage() {
       </p>
 
       {/* ACTION BUTTON */}
-      <button style={primaryBtn} onClick={() => router.push("/lesson?day=1");
+      <button style={primaryBtn} onClick={() => window.location.href = "/lesson?day=1";
 
         ▶ Start Today’s Class
       </button>
