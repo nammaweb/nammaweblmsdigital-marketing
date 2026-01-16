@@ -1,82 +1,130 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function DailyLessonPage() {
+export default function DayLessonPage() {
   const { day } = useParams();
+  const router = useRouter();
+  const [submitted, setSubmitted] = useState(false);
 
   return (
     <div>
-      <h1>Day {day} – Digital Marketing Foundations</h1>
+      <h1>Day {day}: Digital Marketing in the Real World 🚀</h1>
       <p style={{ color: "#475569", marginBottom: "30px" }}>
-        Learn, practice and work on real Namma Web projects
+        Learn like a professional. Think like a marketer. Work on real brands.
       </p>
 
-      {/* TOPIC */}
-      <Section title="📘 Today’s Topic">
-        <p>
-          Introduction to Digital Marketing and how businesses like
-          <strong> Namma Web</strong> grow using SEO, content,
-          social media and AI tools.
-        </p>
+      {/* INTRO */}
+      <Section title="🎯 What You’ll Learn Today">
+        <ul>
+          <li>How digital marketing actually works in companies</li>
+          <li>How Namma Web attracts students online</li>
+          <li>How AI makes marketing 10x faster</li>
+        </ul>
       </Section>
 
-      {/* NOTES */}
-      <Section title="📝 Notes">
-        <ul>
-          <li>What is Digital Marketing?</li>
-          <li>Why businesses need online presence</li>
-          <li>Difference between traditional & digital marketing</li>
-          <li>Overview of SEO, Social Media, Ads & AI</li>
-        </ul>
+      {/* VIDEO */}
+      <Section title="🎥 Watch & Learn">
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/6mbwJ2xhgzM"
+          title="Digital Marketing Basics"
+          allowFullScreen
+          style={{ borderRadius: "12px" }}
+        />
+        <p style={{ marginTop: "10px", fontSize: "14px" }}>
+          🎬 This is a reference video. Namma Web recorded sessions will appear here.
+        </p>
       </Section>
 
       {/* REAL EXAMPLE */}
-      <Section title="🏢 Real Example – Namma Web">
+      <Section title="🏢 Real Scenario – Namma Web">
         <p>
-          Namma Web attracts students by ranking for keywords like
-          <strong> “Digital Marketing Course in Bangalore”</strong>,
-          posting educational content on LinkedIn & Instagram,
-          and using AI for content creation.
+          You joined Namma Web. The company wants more students for its
+          Digital Marketing course in Bangalore.
         </p>
-      </Section>
-
-      {/* PRACTICAL TASK */}
-      <Section title="✍️ Practical Task">
+        <p>
+          👉 Your task as a marketer is to bring leads using:
+        </p>
         <ul>
-          <li>Write 1 paragraph about Namma Web services</li>
-          <li>Create 1 LinkedIn post idea</li>
-          <li>Create 1 Instagram caption</li>
+          <li>Google search (SEO)</li>
+          <li>Instagram & LinkedIn content</li>
+          <li>AI-generated blogs & posts</li>
         </ul>
       </Section>
 
+      {/* THINKING QUESTIONS */}
+      <Section title="🧠 Think Like a Marketer">
+        <p><strong>Answer these in your notebook or Google Doc:</strong></p>
+        <ol>
+          <li>If you were a student, where would you search first?</li>
+          <li>What type of Instagram reel would attract Gen-Z?</li>
+          <li>What problem does Namma Web solve?</li>
+        </ol>
+      </Section>
+
       {/* AI PROMPT */}
-      <Section title="🤖 AI Prompt (Use ChatGPT)">
+      <Section title="🤖 AI Practice (Very Important)">
         <pre style={pre}>
-Write a LinkedIn post promoting a digital marketing course
-by Namma Web targeting students in Bangalore.
+Write an Instagram reel script for Namma Web promoting
+a Digital Marketing course for Gen-Z students in Bangalore.
+Keep it simple, trendy and engaging.
         </pre>
       </Section>
 
+      {/* NOTES DOWNLOAD */}
+      <Section title="📥 Download Notes (PDF)">
+        <a
+          href="/namma-web-digital-marketing-day1-notes.pdf"
+          download
+          style={downloadBtn}
+        >
+          ⬇ Download Namma Web Digital Marketing Notes (PDF)
+        </a>
+        <p style={{ fontSize: "12px", marginTop: "8px" }}>
+          © Namma Web. All rights reserved.
+        </p>
+      </Section>
+
       {/* ASSIGNMENT */}
-      <Section title="🛠 Assignment Submission">
+      <Section title="🛠 Assignment (Real Work)">
+        <ul>
+          <li>Write 1 LinkedIn post for Namma Web</li>
+          <li>Write 1 Instagram caption</li>
+          <li>Explain how YOU would market Namma Web</li>
+        </ul>
         <p>
-          Mail your work to:
+          📧 Mail your work to:
           <br />
           <strong>nammaweb.assist@gmail.com</strong>
         </p>
       </Section>
 
-      {/* QUIZ */}
-      <Section title="❓ Quick Quiz">
-        <p>What is Digital Marketing?</p>
-        <label><input type="radio" /> Online promotion of products</label><br />
-        <label><input type="radio" /> Only newspaper ads</label>
+      {/* CONFIRMATION */}
+      <Section title="✅ Submission Confirmation">
+        <label>
+          <input
+            type="checkbox"
+            checked={submitted}
+            onChange={() => setSubmitted(!submitted)}
+          />{" "}
+          I have submitted my assignment via email
+        </label>
       </Section>
 
-      {/* NEXT */}
-      <button style={primaryBtn}>
-        ✅ Mark Day {day} as Completed
+      {/* NEXT STEP */}
+      <button
+        style={{
+          ...primaryBtn,
+          background: submitted ? "#16a34a" : "#9ca3af",
+          cursor: submitted ? "pointer" : "not-allowed"
+        }}
+        disabled={!submitted}
+        onClick={() => router.push("/day/2")}
+      >
+        {submitted ? "Proceed to Day 2 ▶" : "Submit assignment to continue"}
       </button>
     </div>
   );
@@ -95,25 +143,34 @@ function Section({ title, children }) {
 const section = {
   background: "white",
   padding: "25px",
-  borderRadius: "14px",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+  borderRadius: "16px",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
   marginBottom: "25px"
 };
 
 const primaryBtn = {
-  padding: "14px 24px",
-  background: "#16a34a",
+  padding: "16px 26px",
   color: "white",
   border: "none",
-  borderRadius: "10px",
+  borderRadius: "12px",
   fontWeight: "bold",
-  cursor: "pointer"
+  marginTop: "20px"
 };
 
 const pre = {
   background: "#0f172a",
   color: "#f8fafc",
-  padding: "15px",
-  borderRadius: "10px",
+  padding: "16px",
+  borderRadius: "12px",
   overflowX: "auto"
+};
+
+const downloadBtn = {
+  display: "inline-block",
+  padding: "12px 18px",
+  background: "#2563eb",
+  color: "white",
+  borderRadius: "10px",
+  textDecoration: "none",
+  fontWeight: "bold"
 };
