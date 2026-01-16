@@ -1,10 +1,17 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+/**
+ * 🔥 CRITICAL:
+ * This line DISABLES static optimization.
+ * Without this, Next.js will reuse the same page.
+ */
+export const dynamic = "force-dynamic";
+
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
 /* ===========================
-   COURSE CONTENT (DAY 1–30)
+   COMPLETE COURSE CONTENT
 =========================== */
 
 const lessons = {
@@ -50,27 +57,13 @@ const lessons = {
       "Why is SEO important?"
     ]
   }
-  // (We will extend Day 4–30 once navigation is confirmed)
+  // We will extend Day 4–30 after confirmation
 };
-
-/* ===========================
-   PAGE COMPONENT
-=========================== */
 
 export default function DayLessonPage() {
   const params = useParams();
-  const router = useRouter();
-
-  // SAFELY convert day to number
   const day = Number(params.day);
-
   const [confirmed, setConfirmed] = useState(false);
-
-  // 🔥 HARD RESET on DAY CHANGE (CRITICAL)
-  useEffect(() => {
-    setConfirmed(false);
-    router.refresh(); // forces Next.js to reload data
-  }, [day, router]);
 
   const lesson = lessons[day];
 
@@ -84,7 +77,7 @@ export default function DayLessonPage() {
   }
 
   return (
-    <div key={day}>
+    <div>
       <h1>Day {day}: {lesson.title}</h1>
 
       {/* VIDEO */}
@@ -133,10 +126,12 @@ export default function DayLessonPage() {
 
       <br /><br />
 
-      {/* NEXT BUTTON */}
+      {/* NEXT BUTTON — FULL PAGE NAVIGATION */}
       <button
         disabled={!confirmed}
-        onClick={() => router.push(`/day/${day + 1}`)}
+        onClick={() => {
+          window.location.href = `/day/${day + 1}`;
+        }}
         style={{
           padding: "14px 24px",
           background: confirmed ? "#16a34a" : "#9ca3af",
