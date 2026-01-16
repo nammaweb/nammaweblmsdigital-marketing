@@ -1,140 +1,114 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
-  const [student, setStudent] = useState("");
+  const router = useRouter();
+  const [studentName, setStudentName] = useState("");
 
+  // Check login
   useEffect(() => {
     const name = localStorage.getItem("studentName");
-    if (name) setStudent(name);
-  }, []);
+    if (!name) {
+      router.push("/login");
+    } else {
+      setStudentName(name);
+    }
+  }, [router]);
+
+  // Logout
+  const handleLogout = () => {
+    const confirmLogout = confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("studentName");
+      router.push("/login");
+    }
+  };
 
   return (
     <div>
-      {/* WELCOME SECTION */}
-      <section style={welcomeBox}>
-        <h1>Welcome, {student || "Student"} 👋</h1>
-        <p>
-          Digital Marketing LMS • Namma Web
-        </p>
-      </section>
+      {/* HEADER */}
+      <div style={header}>
+        <h2>Welcome, {studentName} 👋</h2>
+        <button onClick={handleLogout} style={logoutBtn}>
+          Logout
+        </button>
+      </div>
 
-      {/* PROGRESS OVERVIEW */}
-      <section style={section}>
-        <h2>📊 Your Course Progress</h2>
+      <p style={{ color: "#475569", marginBottom: "30px" }}>
+        Your Digital Marketing learning journey with Namma Web
+      </p>
 
-        <div style={progressBox}>
-          <div style={{ ...progressBar, width: "22%" }} />
-        </div>
-        <p style={{ marginTop: "8px", color: "#475569" }}>
-          Day 40 of 180 • 22% completed
-        </p>
-      </section>
+      {/* ACTION BUTTON */}
+      <button style={primaryBtn} onClick={() => router.push("/day/1")}>
+        ▶ Start Today’s Class
+      </button>
 
-      {/* TODAY'S LESSON */}
-      <section style={section}>
-        <h2>📘 Today’s Lesson</h2>
-
-        <div style={card}>
-          <h3>SEO – On Page Optimization</h3>
-          <p>
-            Learn how to optimise website content, headings,
-            keywords and internal links to rank better on Google.
-          </p>
-
-          <button style={primaryBtn}>
-            Start Today’s Lesson
-          </button>
-        </div>
-      </section>
-
-      {/* QUICK ACCESS */}
-      <section style={section}>
-        <h2>⚡ Quick Access</h2>
-
-        <div style={grid}>
-          <DashboardCard title="📚 Syllabus" link="/syllabus" />
-          <DashboardCard title="📝 Assignments" link="/assignments" />
-          <DashboardCard title="🛠 Projects" link="/projects" />
-          <DashboardCard title="📅 Timetable" link="/timetable" />
-          <DashboardCard title="📈 Progress" link="/progress" />
-          <DashboardCard title="⭐ Reviews" link="/reviews" />
-        </div>
-      </section>
+      {/* DASHBOARD GRID */}
+      <div style={grid}>
+        <Card title="📘 Syllabus" onClick={() => router.push("/syllabus")} />
+        <Card title="📝 Assignments" onClick={() => router.push("/assignments")} />
+        <Card title="🛠 Live Projects" onClick={() => router.push("/projects")} />
+        <Card title="📅 Timetable" onClick={() => router.push("/timetable")} />
+        <Card title="📈 Progress" onClick={() => router.push("/progress")} />
+        <Card title="📜 Rules & Certification" onClick={() => router.push("/rules")} />
+      </div>
     </div>
   );
 }
 
-/* COMPONENTS */
-
-function DashboardCard({ title, link }) {
+/* COMPONENT */
+function Card({ title, onClick }) {
   return (
-    <a href={link} style={dashCard}>
-      {title}
-    </a>
+    <div style={card} onClick={onClick}>
+      <h3>{title}</h3>
+      <p style={{ color: "#64748b", fontSize: "14px" }}>
+        Click to view details
+      </p>
+    </div>
   );
 }
 
 /* STYLES */
+const header = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "20px"
+};
 
-const welcomeBox = {
-  background: "linear-gradient(135deg, #2563eb, #1e3a8a)",
+const logoutBtn = {
+  background: "#ef4444",
   color: "white",
-  padding: "40px",
-  borderRadius: "16px",
-  marginBottom: "40px"
-};
-
-const section = {
-  marginBottom: "40px"
-};
-
-const progressBox = {
-  width: "100%",
-  height: "14px",
-  background: "#e5e7eb",
-  borderRadius: "20px",
-  overflow: "hidden"
-};
-
-const progressBar = {
-  height: "100%",
-  background: "#2563eb",
-  borderRadius: "20px"
-};
-
-const card = {
-  background: "white",
-  padding: "25px",
-  borderRadius: "14px",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.05)"
+  border: "none",
+  padding: "10px 16px",
+  borderRadius: "8px",
+  cursor: "pointer"
 };
 
 const primaryBtn = {
-  marginTop: "15px",
-  padding: "12px 24px",
+  padding: "14px 22px",
   background: "#2563eb",
   color: "white",
   border: "none",
-  borderRadius: "8px",
+  borderRadius: "10px",
   fontWeight: "bold",
+  marginBottom: "30px",
   cursor: "pointer"
 };
 
 const grid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
   gap: "20px"
 };
 
-const dashCard = {
+const card = {
   background: "white",
-  padding: "20px",
-  borderRadius: "12px",
-  textAlign: "center",
-  fontWeight: "600",
-  color: "#0f172a",
-  textDecoration: "none",
-  boxShadow: "0 8px 20px rgba(0,0,0,0.05)"
+  padding: "25px",
+  borderRadius: "16px",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+  cursor: "pointer",
+  transition: "0.3s"
 };
