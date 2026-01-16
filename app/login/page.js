@@ -5,33 +5,44 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
+
+  // STATE (must be INSIDE component)
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  // LOGIN HANDLER
   const handleLogin = () => {
-    if (!name.trim()) {
-      setError("Please enter your name");
-      return;
-    }
+    setError("");
+    setLoading(true);
 
-    if (password !== "9241") {
-      setError("Invalid password");
-      return;
-    }
+    setTimeout(() => {
+      if (!name.trim()) {
+        setError("Please enter your name");
+        setLoading(false);
+        return;
+      }
 
-    // Store student name (temporary – backend later)
-    localStorage.setItem("studentName", name);
+      if (password !== "9241") {
+        setError("Invalid password");
+        setLoading(false);
+        return;
+      }
 
-    // Redirect to dashboard
-    router.push("/dashboard");
+      // Save student name (temporary)
+      localStorage.setItem("studentName", name);
+
+      // Go to dashboard
+      router.push("/dashboard");
+    }, 800);
   };
 
   return (
     <div style={container}>
       <div style={card}>
-        <h1 style={{ marginBottom: "10px" }}>Student Login</h1>
-        <p style={{ marginBottom: "25px", color: "#555" }}>
+        <h1>Student Login</h1>
+        <p style={{ marginBottom: "20px", color: "#475569" }}>
           Namma Web Digital Marketing LMS
         </p>
 
@@ -55,8 +66,12 @@ export default function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button style={button} onClick={handleLogin}>
-          Login to LMS
+        <button
+          style={button}
+          onClick={handleLogin}
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "Login to LMS"}
         </button>
 
         <p style={note}>
@@ -67,7 +82,7 @@ export default function LoginPage() {
   );
 }
 
-/* STYLES */
+/* ===== STYLES (SAFE AT BOTTOM) ===== */
 
 const container = {
   minHeight: "80vh",
@@ -99,8 +114,7 @@ const input = {
   padding: "12px",
   marginBottom: "18px",
   borderRadius: "8px",
-  border: "1px solid #cbd5e1",
-  fontSize: "14px"
+  border: "1px solid #cbd5e1"
 };
 
 const button = {
@@ -127,55 +141,3 @@ const note = {
   fontSize: "12px",
   color: "#64748b"
 };
-
-const [loading, setLoading] = useState(false);
-const handleLogin = () => {
-  setError("");
-  setLoading(true);
-
-  setTimeout(() => {
-    if (!name.trim()) {
-      setError("Please enter your name");
-      setLoading(false);
-      return;
-    }
-
-    if (password !== "9241") {
-      setError("Invalid password");
-      setLoading(false);
-      return;
-    }
-
-    localStorage.setItem("studentName", name);
-    router.push("/dashboard");
-  }, 800);
-};
-
-
-<button style={button} onClick={handleLogin} disabled={loading}>
-  {loading ? "Logging in..." : "Login to LMS"}
-</button>
-
-if (status === "Locked") {
-  return (
-    <div style={{ ...card, opacity: 0.6 }}>
-      <h3>{day} – {title}</h3>
-      <p>{description}</p>
-      <p style={{ color: "#64748b", fontSize: "14px" }}>
-        🔒 Complete previous lessons to unlock
-      </p>
-    </div>
-  );
-}
-if (status === "Locked") {
-  return (
-    <div style={{ ...card, opacity: 0.6 }}>
-      <h3>{day} – {title}</h3>
-      <p>{description}</p>
-      <p style={{ color: "#64748b", fontSize: "14px" }}>
-        🔒 Complete previous lessons to unlock
-      </p>
-    </div>
-  );
-}
-
