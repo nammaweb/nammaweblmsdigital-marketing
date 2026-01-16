@@ -3,133 +3,111 @@
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
+const lessons = {
+  1: {
+    title: "Introduction to Digital Marketing",
+    content: [
+      "What is Digital Marketing?",
+      "Why digital skills matter today",
+      "Overview of SEO, Social Media, Ads, AI"
+    ],
+    task: "Write why you want to learn Digital Marketing"
+  },
+  2: {
+    title: "Understanding Online Customers",
+    content: [
+      "Customer journey",
+      "Search behavior",
+      "Buying psychology",
+      "Trust & branding"
+    ],
+    task: "Explain how students search for courses online"
+  },
+  3: {
+    title: "Digital Marketing Channels",
+    content: [
+      "SEO",
+      "Social Media",
+      "Paid Ads",
+      "Email Marketing"
+    ],
+    task: "List channels you see Namma Web using"
+  },
+  4: {
+    title: "Introduction to AI in Marketing",
+    content: [
+      "What is AI?",
+      "Why marketers use AI",
+      "AI tools overview"
+    ],
+    task: "Use ChatGPT to generate 5 content ideas"
+  },
+  5: {
+    title: "Digital Marketing Strategy Basics",
+    content: [
+      "Target audience",
+      "Goals",
+      "Content planning",
+      "Measurement"
+    ],
+    task: "Create a simple strategy for Namma Web"
+  }
+  // Day 6–30 will follow same structure (we’ll extend next)
+};
+
 export default function DayLessonPage() {
   const { day } = useParams();
   const router = useRouter();
   const [confirmed, setConfirmed] = useState(false);
 
+  const lesson = lessons[day];
+
+  if (!lesson) {
+    return (
+      <div>
+        <h1>Lesson Coming Soon 🚧</h1>
+        <p>Content will be available shortly.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h1>Day {day}: Introduction to Digital Marketing 🌐</h1>
+      <h1>Day {day}: {lesson.title}</h1>
       <p style={{ color: "#475569", marginBottom: "30px" }}>
-        Read carefully. Think practically. Learn like a real digital marketer.
+        Learn step-by-step with real Namma Web examples
       </p>
 
-      {/* DEFINITION */}
-      <Section title="📘 What is Digital Marketing?">
-        <p>
-          <strong>Digital Marketing</strong> is the promotion of products,
-          services, or brands using the internet and digital technologies such
-          as search engines, social media, websites, email, and AI tools.
-        </p>
-        <p>
-          Unlike traditional marketing (newspapers, banners, TV), digital
-          marketing allows businesses to reach the right audience, measure
-          results, and improve continuously.
-        </p>
-      </Section>
-
-      {/* WHY IMPORTANT */}
-      <Section title="❓ Why Digital Marketing is Important Today">
+      <Section title="📘 Key Concepts">
         <ul>
-          <li>People search on Google before buying anything</li>
-          <li>Everyone spends time on Instagram, YouTube & LinkedIn</li>
-          <li>Businesses want measurable results</li>
-          <li>Digital skills give high-growth career opportunities</li>
+          {lesson.content.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
         </ul>
       </Section>
 
-      {/* TYPES */}
-      <Section title="🧩 Main Types of Digital Marketing">
-        <ul>
-          <li><strong>SEO</strong> – Ranking websites on Google</li>
-          <li><strong>Content Marketing</strong> – Blogs, videos, posts</li>
-          <li><strong>Social Media Marketing</strong> – Instagram, LinkedIn</li>
-          <li><strong>Paid Ads</strong> – Google Ads, Meta Ads</li>
-          <li><strong>Email Marketing</strong> – Automated emails</li>
-          <li><strong>AI Marketing</strong> – Using AI to work faster & smarter</li>
-        </ul>
-      </Section>
-
-      {/* REAL EXAMPLE */}
-      <Section title="🏢 Real Example – How Namma Web Uses Digital Marketing">
+      <Section title="🏢 Namma Web Example">
         <p>
-          Namma Web attracts students by:
-        </p>
-        <ul>
-          <li>Ranking for keywords like <em>Digital Marketing Course in Bangalore</em></li>
-          <li>Posting educational content on LinkedIn & Instagram</li>
-          <li>Using AI to write blogs, captions & ads</li>
-          <li>Building trust through projects & reviews</li>
-        </ul>
-      </Section>
-
-      {/* GEN Z */}
-      <Section title="🧠 How Gen-Z Consumes Content">
-        <ul>
-          <li>Short videos (Reels & Shorts)</li>
-          <li>Honest & relatable content</li>
-          <li>Learning through real examples</li>
-          <li>Visual + simple explanations</li>
-        </ul>
-        <p>
-          As a digital marketer, your job is to create content that feels
-          <strong> real, helpful and engaging</strong>.
+          Think how Namma Web uses today’s concept to attract students,
+          build trust, and grow digitally.
         </p>
       </Section>
 
-      {/* THINK */}
-      <Section title="🤔 Think Like a Digital Marketer">
-        <p>Answer these questions honestly:</p>
-        <ol>
-          <li>If you want to learn a skill, where do you search first?</li>
-          <li>What made you choose Namma Web?</li>
-          <li>What content would attract you on Instagram?</li>
-        </ol>
-      </Section>
-
-      {/* AI */}
-      <Section title="🤖 How AI Helps Digital Marketers">
-        <p>
-          AI tools like ChatGPT help marketers:
-        </p>
-        <ul>
-          <li>Write blogs faster</li>
-          <li>Create captions & ad copies</li>
-          <li>Generate content ideas</li>
-          <li>Analyze competitors</li>
-        </ul>
-
-        <p><strong>Example AI Prompt:</strong></p>
+      <Section title="🤖 AI Practice">
         <pre style={pre}>
-Write an Instagram caption for Namma Web
-promoting a Digital Marketing course
-for Gen-Z students in Bangalore.
+Use ChatGPT to explain "{lesson.title}"
+in simple words with an example.
         </pre>
       </Section>
 
-      {/* PRACTICAL */}
-      <Section title="✍️ Practical Work (Very Important)">
-        <ul>
-          <li>Write 1 LinkedIn post for Namma Web</li>
-          <li>Write 1 Instagram caption</li>
-          <li>Explain how YOU would promote Namma Web online</li>
-        </ul>
-      </Section>
-
-      {/* ASSIGNMENT */}
-      <Section title="🛠 Assignment Submission">
+      <Section title="🛠 Assignment">
+        <p>{lesson.task}</p>
         <p>
-          Send your work by email to:
-          <br />
-          <strong>nammaweb.assist@gmail.com</strong>
-        </p>
-        <p style={{ fontSize: "14px", color: "#475569" }}>
-          This assignment helps mentors evaluate your understanding.
+          📧 Submit to:
+          <strong> nammaweb.assist@gmail.com</strong>
         </p>
       </Section>
 
-      {/* CONFIRM */}
       <Section title="✅ Confirmation">
         <label>
           <input
@@ -137,27 +115,26 @@ for Gen-Z students in Bangalore.
             checked={confirmed}
             onChange={() => setConfirmed(!confirmed)}
           />{" "}
-          I have completed and submitted my assignment
+          I have completed today’s assignment
         </label>
       </Section>
 
-      {/* NEXT */}
       <button
         disabled={!confirmed}
-        onClick={() => router.push("/day/2")}
+        onClick={() => router.push(`/day/${Number(day) + 1}`)}
         style={{
           ...primaryBtn,
           background: confirmed ? "#16a34a" : "#9ca3af",
           cursor: confirmed ? "pointer" : "not-allowed"
         }}
       >
-        {confirmed ? "Proceed to Day 2 ▶" : "Complete assignment to continue"}
+        {confirmed ? "Proceed to Next Day ▶" : "Complete assignment to continue"}
       </button>
     </div>
   );
 }
 
-/* REUSABLE SECTION */
+/* SECTION COMPONENT */
 function Section({ title, children }) {
   return (
     <div style={section}>
