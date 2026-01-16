@@ -3,124 +3,117 @@
 import { useParams } from "next/navigation";
 
 export default function DailyLessonPage() {
-  const params = useParams();
-  const day = params.day;
+  const { day } = useParams();
 
   return (
     <div>
+      <h1>Day {day} – Digital Marketing Foundations</h1>
+      <p style={{ color: "#475569", marginBottom: "30px" }}>
+        Learn, practice and work on real Namma Web projects
+      </p>
 
-      {/* HEADER */}
-      <section style={header}>
-        <h1>Day {day} – Digital Marketing Lesson</h1>
-        <p>Live Learning • Namma Web LMS</p>
-      </section>
-
-      {/* LESSON CONTENT */}
-      <section style={section}>
-        <h2>📘 Today’s Topic</h2>
-        <div style={card}>
-          <h3>SEO – On Page Optimization</h3>
-          <p>
-            Learn how to optimise website content, headings, keywords,
-            internal links and images to improve Google rankings.
-          </p>
-        </div>
-      </section>
+      {/* TOPIC */}
+      <Section title="📘 Today’s Topic">
+        <p>
+          Introduction to Digital Marketing and how businesses like
+          <strong> Namma Web</strong> grow using SEO, content,
+          social media and AI tools.
+        </p>
+      </Section>
 
       {/* NOTES */}
-      <section style={section}>
-        <h2>📝 Notes</h2>
-        <div style={card}>
-          <ul>
-            <li>Understanding search intent</li>
-            <li>Optimising title & meta description</li>
-            <li>Keyword placement</li>
-            <li>Internal linking strategy</li>
-            <li>Image optimisation</li>
-          </ul>
-        </div>
-      </section>
+      <Section title="📝 Notes">
+        <ul>
+          <li>What is Digital Marketing?</li>
+          <li>Why businesses need online presence</li>
+          <li>Difference between traditional & digital marketing</li>
+          <li>Overview of SEO, Social Media, Ads & AI</li>
+        </ul>
+      </Section>
 
-      {/* VIDEO */}
-      <section style={section}>
-        <h2>🎥 Video Lesson</h2>
-        <div style={videoBox}>
-          <p>Recorded class video will appear here</p>
-        </div>
-      </section>
+      {/* REAL EXAMPLE */}
+      <Section title="🏢 Real Example – Namma Web">
+        <p>
+          Namma Web attracts students by ranking for keywords like
+          <strong> “Digital Marketing Course in Bangalore”</strong>,
+          posting educational content on LinkedIn & Instagram,
+          and using AI for content creation.
+        </p>
+      </Section>
 
-      {/* AI PRACTICE */}
-      <section style={section}>
-        <h2>🤖 AI Practice Task</h2>
-        <div style={card}>
-          <p>
-            Use AI to generate:
-          </p>
-          <ul>
-            <li>5 SEO-friendly blog titles</li>
-            <li>Meta description for a service page</li>
-            <li>Keyword list for a local business</li>
-          </ul>
-        </div>
-      </section>
+      {/* PRACTICAL TASK */}
+      <Section title="✍️ Practical Task">
+        <ul>
+          <li>Write 1 paragraph about Namma Web services</li>
+          <li>Create 1 LinkedIn post idea</li>
+          <li>Create 1 Instagram caption</li>
+        </ul>
+      </Section>
+
+      {/* AI PROMPT */}
+      <Section title="🤖 AI Prompt (Use ChatGPT)">
+        <pre style={pre}>
+Write a LinkedIn post promoting a digital marketing course
+by Namma Web targeting students in Bangalore.
+        </pre>
+      </Section>
 
       {/* ASSIGNMENT */}
-      <section style={section}>
-        <h2>🛠 Assignment</h2>
-        <div style={card}>
-          <p>
-            Perform on-page SEO optimisation for any one webpage and
-            submit screenshots and report.
-          </p>
+      <Section title="🛠 Assignment Submission">
+        <p>
+          Mail your work to:
+          <br />
+          <strong>nammaweb.assist@gmail.com</strong>
+        </p>
+      </Section>
 
-          <button style={primaryBtn}>
-            Mark Lesson as Completed
-          </button>
-        </div>
-      </section>
+      {/* QUIZ */}
+      <Section title="❓ Quick Quiz">
+        <p>What is Digital Marketing?</p>
+        <label><input type="radio" /> Online promotion of products</label><br />
+        <label><input type="radio" /> Only newspaper ads</label>
+      </Section>
 
+      {/* NEXT */}
+      <button style={primaryBtn}>
+        ✅ Mark Day {day} as Completed
+      </button>
+    </div>
+  );
+}
+
+function Section({ title, children }) {
+  return (
+    <div style={section}>
+      <h2>{title}</h2>
+      {children}
     </div>
   );
 }
 
 /* STYLES */
-
-const header = {
-  background: "linear-gradient(135deg, #2563eb, #1e3a8a)",
-  color: "white",
-  padding: "40px",
-  borderRadius: "16px",
-  marginBottom: "40px"
-};
-
 const section = {
-  marginBottom: "40px"
-};
-
-const card = {
   background: "white",
   padding: "25px",
   borderRadius: "14px",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.05)"
-};
-
-const videoBox = {
-  background: "#e5e7eb",
-  height: "220px",
-  borderRadius: "14px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  color: "#475569"
+  boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+  marginBottom: "25px"
 };
 
 const primaryBtn = {
-  marginTop: "15px",
   padding: "14px 24px",
-  background: "#2563eb",
+  background: "#16a34a",
   color: "white",
   border: "none",
-  borderRadius: "8px",
+  borderRadius: "10px",
   fontWeight: "bold",
   cursor: "pointer"
+};
+
+const pre = {
+  background: "#0f172a",
+  color: "#f8fafc",
+  padding: "15px",
+  borderRadius: "10px",
+  overflowX: "auto"
 };
