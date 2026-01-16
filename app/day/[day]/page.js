@@ -1,147 +1,165 @@
 "use client";
 
-/**
- * 🔥 CRITICAL:
- * This line DISABLES static optimization.
- * Without this, Next.js will reuse the same page.
- */
-export const dynamic = "force-dynamic";
-
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 /* ===========================
-   COMPLETE COURSE CONTENT
+   COMPLETE ORDERED SYLLABUS
 =========================== */
 
-const lessons = {
-  1: {
+const syllabus = [
+  {
+    day: 1,
     title: "Introduction to Digital Marketing",
-    video: "https://www.youtube.com/embed/6mbwJ2xhgzM",
-    points: [
-      "What is Digital Marketing",
-      "Traditional vs Digital Marketing",
-      "Why digital skills matter",
-      "Career opportunities"
+    definition:
+      "Digital Marketing is the promotion of products or services using the internet and digital technologies.",
+    notes: [
+      "Difference between traditional and digital marketing",
+      "Why digital marketing is important today",
+      "Career opportunities in digital marketing"
     ],
-    questions: [
-      "Why did you choose Digital Marketing?",
-      "Where do you search before buying something?"
+    assessment: [
+      "Why do businesses need digital marketing?",
+      "How is digital marketing different from traditional marketing?"
     ]
   },
-  2: {
-    title: "Understanding Online Customers",
-    video: "https://www.youtube.com/embed/9No-FiEInLA",
-    points: [
-      "Customer journey",
-      "Online behavior",
-      "Trust & decision making",
-      "Pain points"
+  {
+    day: 2,
+    title: "Understanding Online Customer Behaviour",
+    definition:
+      "Customer behaviour refers to how users search, compare, and decide online.",
+    notes: [
+      "Customer journey stages",
+      "Search behaviour",
+      "Trust and decision making"
     ],
-    questions: [
-      "How do students search for courses?",
-      "What builds trust online?"
+    assessment: [
+      "How do students search for courses online?",
+      "What builds trust on a website?"
     ]
   },
-  3: {
+  {
+    day: 3,
     title: "Digital Marketing Channels Overview",
-    video: "https://www.youtube.com/embed/nNbcB5m4sU4",
-    points: [
+    definition:
+      "Digital marketing channels are platforms used to reach customers online.",
+    notes: [
       "SEO",
-      "Social Media",
-      "Paid Ads",
-      "Email & Automation"
+      "Social Media Marketing",
+      "Paid Advertising",
+      "Email Marketing"
     ],
-    questions: [
-      "Which channel do you use most?",
+    assessment: [
+      "Which channel do you use most and why?",
       "Why is SEO important?"
     ]
+  },
+  {
+    day: 4,
+    title: "Introduction to Search Engines",
+    definition:
+      "Search engines help users find information on the internet.",
+    notes: [
+      "How Google works",
+      "Search results page",
+      "Organic vs paid results"
+    ],
+    assessment: [
+      "What is a search engine?",
+      "Why Google is popular?"
+    ]
+  },
+  {
+    day: 5,
+    title: "Introduction to SEO",
+    definition:
+      "SEO is the process of improving website visibility on search engines.",
+    notes: [
+      "What is SEO",
+      "Benefits of SEO",
+      "SEO career scope"
+    ],
+    assessment: [
+      "Why SEO is important for businesses?",
+      "What happens if SEO is ignored?"
+    ]
   }
-  // We will extend Day 4–30 after confirmation
-};
+
+  // 👉 Day 6–30 will continue in SAME order & structure
+];
+
+/* ===========================
+   PAGE COMPONENT
+=========================== */
 
 export default function DayLessonPage() {
-  const params = useParams();
-  const day = Number(params.day);
-  const [confirmed, setConfirmed] = useState(false);
+  const { day } = useParams();
+  const router = useRouter();
+  const currentDay = Number(day);
 
-  const lesson = lessons[day];
+  const lesson = syllabus.find(item => item.day === currentDay);
+  const [completed, setCompleted] = useState(false);
 
   if (!lesson) {
     return (
       <div>
-        <h1>Lesson Coming Soon 🚧</h1>
-        <p>Content for Day {day} will be available shortly.</p>
+        <h1>Lesson Not Available</h1>
+        <p>Content for Day {currentDay} will be added.</p>
       </div>
     );
   }
 
   return (
     <div>
-      <h1>Day {day}: {lesson.title}</h1>
+      <h1>Day {lesson.day}: {lesson.title}</h1>
 
-      {/* VIDEO */}
-      <iframe
-        width="100%"
-        height="360"
-        src={lesson.video}
-        title={lesson.title}
-        allowFullScreen
-        style={{ borderRadius: "12px", marginBottom: "20px" }}
-      />
+      <h2>📘 Definition</h2>
+      <p>{lesson.definition}</p>
 
-      {/* LEARNING POINTS */}
-      <h2>📘 What You Will Learn</h2>
+      <h2>📝 Notes</h2>
       <ul>
-        {lesson.points.map((p, i) => (
-          <li key={i}>{p}</li>
+        {lesson.notes.map((note, i) => (
+          <li key={i}>{note}</li>
         ))}
       </ul>
 
-      {/* QUESTIONS */}
-      <h2>🤔 Think & Answer</h2>
+      <h2>❓ Assessment Questions</h2>
       <ol>
-        {lesson.questions.map((q, i) => (
+        {lesson.assessment.map((q, i) => (
           <li key={i}>{q}</li>
         ))}
       </ol>
 
-      {/* ASSIGNMENT */}
       <h2>🛠 Assignment</h2>
       <p>
-        Apply today’s topic practically and email your work to:
-        <br />
+        Write answers and mail to:<br />
         <strong>nammaweb.assist@gmail.com</strong>
       </p>
 
-      {/* CONFIRMATION */}
       <label>
         <input
           type="checkbox"
-          checked={confirmed}
-          onChange={() => setConfirmed(!confirmed)}
+          checked={completed}
+          onChange={() => setCompleted(!completed)}
         />{" "}
-        I have completed and submitted today’s assignment
+        I have completed today’s assignment
       </label>
 
       <br /><br />
 
-      {/* NEXT BUTTON — FULL PAGE NAVIGATION */}
       <button
-        disabled={!confirmed}
-        onClick={() => {
-          window.location.href = `/day/${day + 1}`;
-        }}
+        disabled={!completed}
+        onClick={() => router.push(`/day/${currentDay + 1}`)}
         style={{
           padding: "14px 24px",
-          background: confirmed ? "#16a34a" : "#9ca3af",
+          background: completed ? "#16a34a" : "#9ca3af",
           color: "white",
           border: "none",
           borderRadius: "10px",
-          cursor: confirmed ? "pointer" : "not-allowed"
+          cursor: completed ? "pointer" : "not-allowed"
         }}
       >
-        {confirmed ? "Proceed to Next Day ▶" : "Complete assignment to continue"}
+        Proceed to Day {currentDay + 1} ▶
       </button>
     </div>
   );
