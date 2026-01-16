@@ -6,130 +6,158 @@ import { useState } from "react";
 export default function DayLessonPage() {
   const { day } = useParams();
   const router = useRouter();
-  const [submitted, setSubmitted] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
 
   return (
     <div>
-      <h1>Day {day}: Digital Marketing in the Real World 🚀</h1>
+      <h1>Day {day}: Introduction to Digital Marketing 🌐</h1>
       <p style={{ color: "#475569", marginBottom: "30px" }}>
-        Learn like a professional. Think like a marketer. Work on real brands.
+        Read carefully. Think practically. Learn like a real digital marketer.
       </p>
 
-      {/* INTRO */}
-      <Section title="🎯 What You’ll Learn Today">
+      {/* DEFINITION */}
+      <Section title="📘 What is Digital Marketing?">
+        <p>
+          <strong>Digital Marketing</strong> is the promotion of products,
+          services, or brands using the internet and digital technologies such
+          as search engines, social media, websites, email, and AI tools.
+        </p>
+        <p>
+          Unlike traditional marketing (newspapers, banners, TV), digital
+          marketing allows businesses to reach the right audience, measure
+          results, and improve continuously.
+        </p>
+      </Section>
+
+      {/* WHY IMPORTANT */}
+      <Section title="❓ Why Digital Marketing is Important Today">
         <ul>
-          <li>How digital marketing actually works in companies</li>
-          <li>How Namma Web attracts students online</li>
-          <li>How AI makes marketing 10x faster</li>
+          <li>People search on Google before buying anything</li>
+          <li>Everyone spends time on Instagram, YouTube & LinkedIn</li>
+          <li>Businesses want measurable results</li>
+          <li>Digital skills give high-growth career opportunities</li>
         </ul>
       </Section>
 
-      {/* VIDEO */}
-      <Section title="🎥 Watch & Learn">
-        <iframe
-          width="100%"
-          height="315"
-          src="https://www.youtube.com/embed/6mbwJ2xhgzM"
-          title="Digital Marketing Basics"
-          allowFullScreen
-          style={{ borderRadius: "12px" }}
-        />
-        <p style={{ marginTop: "10px", fontSize: "14px" }}>
-          🎬 This is a reference video. Namma Web recorded sessions will appear here.
-        </p>
+      {/* TYPES */}
+      <Section title="🧩 Main Types of Digital Marketing">
+        <ul>
+          <li><strong>SEO</strong> – Ranking websites on Google</li>
+          <li><strong>Content Marketing</strong> – Blogs, videos, posts</li>
+          <li><strong>Social Media Marketing</strong> – Instagram, LinkedIn</li>
+          <li><strong>Paid Ads</strong> – Google Ads, Meta Ads</li>
+          <li><strong>Email Marketing</strong> – Automated emails</li>
+          <li><strong>AI Marketing</strong> – Using AI to work faster & smarter</li>
+        </ul>
       </Section>
 
       {/* REAL EXAMPLE */}
-      <Section title="🏢 Real Scenario – Namma Web">
+      <Section title="🏢 Real Example – How Namma Web Uses Digital Marketing">
         <p>
-          You joined Namma Web. The company wants more students for its
-          Digital Marketing course in Bangalore.
-        </p>
-        <p>
-          👉 Your task as a marketer is to bring leads using:
+          Namma Web attracts students by:
         </p>
         <ul>
-          <li>Google search (SEO)</li>
-          <li>Instagram & LinkedIn content</li>
-          <li>AI-generated blogs & posts</li>
+          <li>Ranking for keywords like <em>Digital Marketing Course in Bangalore</em></li>
+          <li>Posting educational content on LinkedIn & Instagram</li>
+          <li>Using AI to write blogs, captions & ads</li>
+          <li>Building trust through projects & reviews</li>
         </ul>
       </Section>
 
-      {/* THINKING QUESTIONS */}
-      <Section title="🧠 Think Like a Marketer">
-        <p><strong>Answer these in your notebook or Google Doc:</strong></p>
+      {/* GEN Z */}
+      <Section title="🧠 How Gen-Z Consumes Content">
+        <ul>
+          <li>Short videos (Reels & Shorts)</li>
+          <li>Honest & relatable content</li>
+          <li>Learning through real examples</li>
+          <li>Visual + simple explanations</li>
+        </ul>
+        <p>
+          As a digital marketer, your job is to create content that feels
+          <strong> real, helpful and engaging</strong>.
+        </p>
+      </Section>
+
+      {/* THINK */}
+      <Section title="🤔 Think Like a Digital Marketer">
+        <p>Answer these questions honestly:</p>
         <ol>
-          <li>If you were a student, where would you search first?</li>
-          <li>What type of Instagram reel would attract Gen-Z?</li>
-          <li>What problem does Namma Web solve?</li>
+          <li>If you want to learn a skill, where do you search first?</li>
+          <li>What made you choose Namma Web?</li>
+          <li>What content would attract you on Instagram?</li>
         </ol>
       </Section>
 
-      {/* AI PROMPT */}
-      <Section title="🤖 AI Practice (Very Important)">
+      {/* AI */}
+      <Section title="🤖 How AI Helps Digital Marketers">
+        <p>
+          AI tools like ChatGPT help marketers:
+        </p>
+        <ul>
+          <li>Write blogs faster</li>
+          <li>Create captions & ad copies</li>
+          <li>Generate content ideas</li>
+          <li>Analyze competitors</li>
+        </ul>
+
+        <p><strong>Example AI Prompt:</strong></p>
         <pre style={pre}>
-Write an Instagram reel script for Namma Web promoting
-a Digital Marketing course for Gen-Z students in Bangalore.
-Keep it simple, trendy and engaging.
+Write an Instagram caption for Namma Web
+promoting a Digital Marketing course
+for Gen-Z students in Bangalore.
         </pre>
       </Section>
 
-      {/* NOTES DOWNLOAD */}
-      <Section title="📥 Download Notes (PDF)">
-        <a
-          href="/namma-web-digital-marketing-day1-notes.pdf"
-          download
-          style={downloadBtn}
-        >
-          ⬇ Download Namma Web Digital Marketing Notes (PDF)
-        </a>
-        <p style={{ fontSize: "12px", marginTop: "8px" }}>
-          © Namma Web. All rights reserved.
-        </p>
-      </Section>
-
-      {/* ASSIGNMENT */}
-      <Section title="🛠 Assignment (Real Work)">
+      {/* PRACTICAL */}
+      <Section title="✍️ Practical Work (Very Important)">
         <ul>
           <li>Write 1 LinkedIn post for Namma Web</li>
           <li>Write 1 Instagram caption</li>
-          <li>Explain how YOU would market Namma Web</li>
+          <li>Explain how YOU would promote Namma Web online</li>
         </ul>
+      </Section>
+
+      {/* ASSIGNMENT */}
+      <Section title="🛠 Assignment Submission">
         <p>
-          📧 Mail your work to:
+          Send your work by email to:
           <br />
           <strong>nammaweb.assist@gmail.com</strong>
         </p>
+        <p style={{ fontSize: "14px", color: "#475569" }}>
+          This assignment helps mentors evaluate your understanding.
+        </p>
       </Section>
 
-      {/* CONFIRMATION */}
-      <Section title="✅ Submission Confirmation">
+      {/* CONFIRM */}
+      <Section title="✅ Confirmation">
         <label>
           <input
             type="checkbox"
-            checked={submitted}
-            onChange={() => setSubmitted(!submitted)}
+            checked={confirmed}
+            onChange={() => setConfirmed(!confirmed)}
           />{" "}
-          I have submitted my assignment via email
+          I have completed and submitted my assignment
         </label>
       </Section>
 
-      {/* NEXT STEP */}
+      {/* NEXT */}
       <button
+        disabled={!confirmed}
+        onClick={() => router.push("/day/2")}
         style={{
           ...primaryBtn,
-          background: submitted ? "#16a34a" : "#9ca3af",
-          cursor: submitted ? "pointer" : "not-allowed"
+          background: confirmed ? "#16a34a" : "#9ca3af",
+          cursor: confirmed ? "pointer" : "not-allowed"
         }}
-        disabled={!submitted}
-        onClick={() => router.push("/day/2")}
       >
-        {submitted ? "Proceed to Day 2 ▶" : "Submit assignment to continue"}
+        {confirmed ? "Proceed to Day 2 ▶" : "Complete assignment to continue"}
       </button>
     </div>
   );
 }
 
+/* REUSABLE SECTION */
 function Section({ title, children }) {
   return (
     <div style={section}>
@@ -149,7 +177,7 @@ const section = {
 };
 
 const primaryBtn = {
-  padding: "16px 26px",
+  padding: "16px 28px",
   color: "white",
   border: "none",
   borderRadius: "12px",
@@ -163,14 +191,4 @@ const pre = {
   padding: "16px",
   borderRadius: "12px",
   overflowX: "auto"
-};
-
-const downloadBtn = {
-  display: "inline-block",
-  padding: "12px 18px",
-  background: "#2563eb",
-  color: "white",
-  borderRadius: "10px",
-  textDecoration: "none",
-  fontWeight: "bold"
 };
