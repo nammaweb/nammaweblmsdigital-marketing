@@ -1,9 +1,10 @@
 "use client";
-import { dailyQuestions } from "../../data/questions";
+
 import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { syllabus } from "../../data/syllabus";
+import { dailyQuestions } from "../../data/questions";
 
 export default function Lesson() {
 
@@ -14,6 +15,7 @@ export default function Lesson() {
   const [score, setScore] = useState(null);
 
   useEffect(() => {
+
     const params = new URLSearchParams(window.location.search);
     const d = Number(params.get("day")) || 1;
     setDay(d);
@@ -21,36 +23,52 @@ export default function Lesson() {
     const studentName = localStorage.getItem("studentName");
     setName(studentName);
 
-    const fetch = async () => {
+    const fetchData = async () => {
       const snap = await getDoc(doc(db, "students", studentName));
-      if (snap.exists()) setCurrentDay(snap.data().currentDay);
+      if (snap.exists()) {
+        setCurrentDay(snap.data().currentDay);
+      }
     };
 
-    fetch();
+    fetchData();
+
   }, []);
 
   const lesson = syllabus[day];
+  const questions = dailyQuestions[day];
+
+  if (!lesson) return <h1>Lesson not found</h1>;
+  if (day > currentDay) return <h1>🔒 Lesson Locked</h1>;
+
+  const handleSelect = (qIndex, optionIndex) => {
+    setAnswers({
+      ...answers,
+      [qIndex]: optionIndex
+    });
+  };
 
   const submitQuiz = async () => {
 
-    let calculated = 0;
+    let calculatedScore = 0;
 
-    lesson.quiz.forEach((q, i) => {
-      if (answers[i] === q.correct) calculated += 5;
+    questions.forEach((q, index) => {
+      if (answers[index] === q.correct) {
+        calculatedScore += 5;
+      }
     });
 
-    setScore(calculated);
+    setScore(calculatedScore);
 
-    if (calculated >= 40 && day === currentDay) {
+    if (calculatedScore >= 40 && day === currentDay) {
 
       const snap = await getDoc(doc(db, "students", name));
       const data = snap.data();
 
       await updateDoc(doc(db, "students", name), {
         currentDay: currentDay + 1,
-        totalScore: (data.totalScore || 0) + calculated,
+        totalScore: (data.totalScore || 0) + calculatedScore,
         totalCompletedLessons: (data.totalCompletedLessons || 0) + 1,
-        rankPoints: (data.rankPoints || 0) + calculated
+        rankPoints: (data.rankPoints || 0) + calculatedScore
       });
 
       alert("Next lesson unlocked!");
@@ -59,37 +77,56 @@ export default function Lesson() {
     }
   };
 
-  if (!lesson) return <h1>Lesson not found</h1>;
-  if (day > currentDay) return <h1>🔒 Locked</h1>;
-
   return (
-    <div style={{ padding: "40px" }}>
+    <div style={{ padding: "40px", maxWidth: "1000px", margin: "auto" }}>
+
       <h1>Day {day}: {lesson.title}</h1>
 
-      <iframe width="100%" height="350" src={lesson.video} />
+      <iframe
+        width="100%"
+        height="350"
+        src={lesson.video}
+        allowFullScreen
+      />
 
-      <pre>{lesson.notes}</pre>
+      <pre style={{ whiteSpace: "pre-wrap", marginTop: "20px" }}>
+        {lesson.notes}
+      </pre>
 
-      <h3>Quiz</h3>
+      <h2>📝 Quiz (10 Questions – 50 Marks)</h2>
 
-      {lesson.quiz.map((q, i) => (
-        <div key={i}>
-          <p>{q.question}</p>
-          {q.options.map((opt, j) => (
-            <div key={j}>
+      {questions.map((q, index) => (
+        <div key={index} style={{ marginBottom: "20px" }}>
+          <p><strong>{index + 1}. {q.question}</strong></p>
+
+          {q.options.map((option, i) => (
+            <div key={i}>
               <input
                 type="radio"
-                name={`q${i}`}
-                onChange={() => setAnswers({ ...answers, [i]: j })}
-              /> {opt}
+                name={`q${index}`}
+                onChange={() => handleSelect(index, i)}
+              />
+              {" "}
+              {option}
             </div>
           ))}
         </div>
       ))}
 
-      <button onClick={submitQuiz}>Submit Quiz</button>
+      <button onClick={submitQuiz} style={{
+        padding: "10px 20px",
+        background: "#22c55e",
+        color: "white",
+        border: "none",
+        borderRadius: "6px"
+      }}>
+        Submit Quiz
+      </button>
 
-      {score && <h3>Score: {score}/50</h3>}
+      {score !== null && (
+        <h3>Your Score: {score}/50</h3>
+      )}
+
     </div>
   );
 }
