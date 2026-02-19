@@ -576,3 +576,246 @@ FINAL TASK
 Prepare complete SEO audit report for Namma Web.
 `
 },
+31: {
+title: "Google Ads Introduction",
+video: "https://www.youtube.com/embed/EbWfZrYgW7Y",
+notes: `
+WHAT IS GOOGLE ADS?
+Paid advertising on Google search & display network.
+
+CAMPAIGN TYPES
+• Search
+• Display
+• Shopping
+• Performance Max
+
+CASE STUDY
+E-commerce brands scale revenue using search campaigns.
+
+NAMMA WEB TASK
+Identify 10 high intent keywords for ads.
+
+ASSIGNMENT
+Draft Google Ads campaign plan.
+`
+},
+
+32: {
+title: "Search Campaign Setup",
+video: "https://www.youtube.com/embed/7gYd5XoVQjM",
+notes: `
+STRUCTURE
+Campaign → Ad Group → Keywords → Ads
+
+KEY FACTORS
+• Quality Score
+• Ad relevance
+• Landing page experience
+
+ASSIGNMENT
+Write 3 Google ad copies.
+`
+},
+
+33: {
+title: "Display Ads Strategy",
+video: "https://www.youtube.com/embed/Vv3wTnZ5k4g",
+notes: `
+DISPLAY NETWORK
+Banner ads across websites.
+
+TARGETING
+• Contextual
+• Placement
+• Audience targeting
+
+ASSIGNMENT
+Design 2 banner ad headlines.
+`
+},
+
+34: {
+title: "Meta Ads (Facebook & Instagram)",
+video: "https://www.youtube.com/embed/lzW5Hq9m0fE",
+notes: `
+META STRUCTURE
+Campaign → Ad Set → Ad
+
+OBJECTIVES
+• Traffic
+• Leads
+• Conversions
+
+CASE STUDY
+Ed-tech companies scale using lead ads.
+
+ASSIGNMENT
+Create Meta lead campaign plan.
+`
+},
+
+35: {
+title: "Creative Strategy & Hooks",
+video: "https://www.youtube.com/embed/Fv0kzY2mQ6U",
+notes: `
+HOOK STRUCTURES
+• Problem based
+• Shock factor
+• Authority
+• Social proof
+
+ASSIGNMENT
+Write 5 ad hooks for AI marketing course.
+`
+},
+
+36: {
+title: "Audience Targeting Deep Dive",
+video: "https://www.youtube.com/embed/k2wN3r9Z6gA",
+notes: `
+TARGETING TYPES
+• Interest
+• Lookalike
+• Custom audience
+• Retargeting
+
+ASSIGNMENT
+Create audience targeting sheet.
+`
+},
+
+37: {
+title: "Retargeting Strategy",
+video: "https://www.youtube.com/embed/G3z9Vxk8p7Q",
+notes: `
+RETARGETING
+Show ads to people who visited website but didn’t convert.
+
+CASE STUDY
+Amazon retargets abandoned cart users.
+
+ASSIGNMENT
+Design retargeting funnel.
+`
+},
+
+38: {
+title: "Pixel Setup & Tracking",
+video: "https://www.youtube.com/embed/Nm8kY4pQ5hE",
+notes: `
+PIXELS TRACK:
+• Page views
+• Leads
+• Conversions
+
+TOOLS
+• Meta Pixel
+• Google Tag Manager
+
+ASSIGNMENT
+Explain tracking flow.
+`
+},
+
+39: {
+title: "Budget Optimization",
+video: "https://www.youtube.com/embed/U8mX2pQ9s4E",
+notes: `
+OPTIMIZE BASED ON:
+• Cost per lead
+• CTR
+• ROAS
+
+ASSIGNMENT
+Calculate CPL if ₹10,000 gives 50 leads.
+`
+},
+
+40: {
+title: "Scaling Campaigns",
+video: "https://www.youtube.com/embed/6WvQk8dF3xA",
+notes: `
+SCALING METHODS
+• Increase budget gradually
+• Duplicate high performing ads
+• Expand audience
+
+ASSIGNMENT
+Create scaling strategy for Namma Web.
+`
+},
+
+41: {
+title: "AI Ad Optimization",
+video: "https://www.youtube.com/embed/x3QvL5pT8wE",
+notes: `
+AI USE CASES
+• Automated bidding
+• Dynamic creative testing
+• Audience prediction
+
+ASSIGNMENT
+List 3 AI tools for ad automation.
+`
+},
+
+42: {
+title: "Media Planning Strategy",
+video: "https://www.youtube.com/embed/Ym5kL9vP7sQ",
+notes: `
+PLAN:
+• Budget allocation
+• Platform split
+• Timeline
+
+ASSIGNMENT
+Create 3-month media plan.
+`
+},
+
+43: {
+title: "Reporting & ROI",
+video: "https://www.youtube.com/embed/Rv3kZ8mP2tE",
+notes: `
+KEY METRICS
+• ROAS
+• Conversion rate
+• CTR
+• CPL
+
+ASSIGNMENT
+Prepare sample performance report.
+`
+},
+
+44: {
+title: "A/B Testing",
+video: "https://www.youtube.com/embed/Tv2kY3pX9hQ",
+notes: `
+TEST:
+• Headlines
+• Creatives
+• Landing pages
+
+ASSIGNMENT
+Design A/B testing experiment.
+`
+},
+
+45: {
+title: "Full Paid Strategy for Namma Web",
+video: "https://www.youtube.com/embed/p7kL4vX9m3Q",
+notes: `
+FINAL PROJECT
+Combine:
+• Google Ads
+• Meta Ads
+• Retargeting
+• Email funnel
+
+Create full 30-day paid marketing plan for Namma Web.
+
+ASSIGNMENT
+Submit complete paid strategy presentation.
+`
+},
