@@ -1,20 +1,19 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { syllabus } from "../../data/syllabus";
 import { dailyQuestions } from "../../data/questions";
 
 export default function Lesson() {
 
   const [day, setDay] = useState(1);
-  const [currentDay, setCurrentDay] = useState(1);
-  const [name, setName] = useState("");
+  const [currentDay, setCurrentDay] = useState(null);
+  const [name, setName] = useState(null);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
@@ -23,20 +22,48 @@ export default function Lesson() {
     setDay(d);
 
     const studentName = localStorage.getItem("studentName");
-    if (!studentName) return;
+
+    if (!studentName) {
+      window.location.href = "/login";
+      return;
+    }
 
     setName(studentName);
 
     const fetchData = async () => {
-      const snap = await getDoc(doc(db, "students", studentName));
-      if (snap.exists()) {
-        setCurrentDay(snap.data().currentDay);
+      try {
+        const ref = doc(db, "students", studentName);
+        const snap = await getDoc(ref);
+
+        if (snap.exists()) {
+          setCurrentDay(snap.data().currentDay || 1);
+        } else {
+          // Create student record if not exists
+          await setDoc(ref, {
+            name: studentName,
+            currentDay: 1,
+            totalScore: 0,
+            totalCompletedLessons: 0,
+            rankPoints: 0
+          });
+          setCurrentDay(1);
+        }
+
+        setLoading(false);
+
+      } catch (error) {
+        console.error("Firebase error:", error);
+        setLoading(false);
       }
     };
 
     fetchData();
 
   }, []);
+
+  if (loading) {
+    return <h1 style={{ textAlign: "center", marginTop: "100px" }}>Loading...</h1>;
+  }
 
   const lesson = syllabus[day];
   const questions = dailyQuestions[day];
@@ -45,10 +72,10 @@ export default function Lesson() {
   if (day > currentDay) return <h1>🔒 Lesson Locked</h1>;
 
   const handleSelect = (qIndex, optionIndex) => {
-    setAnswers({
-      ...answers,
+    setAnswers(prev => ({
+      ...prev,
       [qIndex]: optionIndex
-    });
+    }));
   };
 
   const submitQuiz = async () => {
@@ -68,23 +95,30 @@ export default function Lesson() {
       return;
     }
 
-    const snap = await getDoc(doc(db, "students", name));
-    if (!snap.exists()) return;
+    try {
 
-    const data = snap.data();
+      const ref = doc(db, "students", name);
+      const snap = await getDoc(ref);
 
-    // Only unlock if this is current lesson
-    if (Number(day) === Number(data.currentDay)) {
+      if (!snap.exists()) return;
 
-      await updateDoc(doc(db, "students", name), {
-        currentDay: Number(data.currentDay) + 1,
-        totalScore: (data.totalScore || 0) + calculatedScore,
-        totalCompletedLessons: (data.totalCompletedLessons || 0) + 1,
-        rankPoints: (data.rankPoints || 0) + calculatedScore
-      });
+      const data = snap.data();
 
-      alert("Next lesson unlocked!");
-      window.location.href = "/course";
+      if (Number(day) === Number(data.currentDay)) {
+
+        await updateDoc(ref, {
+          currentDay: data.currentDay + 1,
+          totalScore: (data.totalScore || 0) + calculatedScore,
+          totalCompletedLessons: (data.totalCompletedLessons || 0) + 1,
+          rankPoints: (data.rankPoints || 0) + calculatedScore
+        });
+
+        alert("Next lesson unlocked!");
+        window.location.href = "/course";
+      }
+
+    } catch (error) {
+      console.error("Update error:", error);
     }
 
   };
@@ -107,7 +141,7 @@ export default function Lesson() {
 
       <h2>📝 Quiz (10 Questions – 50 Marks)</h2>
 
-      {questions && questions.map((q, index) => (
+      {questions?.map((q, index) => (
         <div key={index} style={{ marginBottom: "20px" }}>
           <p><strong>{index + 1}. {q.question}</strong></p>
 
