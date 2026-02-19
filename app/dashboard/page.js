@@ -51,3 +51,9 @@ export default function Dashboard() {
     </div>
   );
 }
+
+<br />
+<a href="/final-exam">Take Final Exam</a>
+<br />
+<a href="/certificate">View Certificate</a>
+
