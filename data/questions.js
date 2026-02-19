@@ -12,7 +12,7 @@ options: [
 correct: 0
 },
 {
-question: "Which platform is core to Digital Marketing ecosystem?",
+question: "Which platform is core to the Digital Marketing ecosystem?",
 options: [
 "Google Search Engine",
 "Stone carving",
@@ -25,9 +25,9 @@ correct: 0
 question: "Why is Digital Marketing superior to traditional marketing?",
 options: [
 "Because it is measurable and data-driven",
-"Because it is offline",
 "Because it avoids analytics",
-"Because it removes tracking"
+"Because it removes tracking",
+"Because it works offline only"
 ],
 correct: 0
 },
@@ -35,19 +35,19 @@ correct: 0
 question: "Which company uses advanced digital personalization?",
 options: [
 "Amazon",
-"Local tea shop",
+"Local grocery store",
 "Street vendor",
 "Offline library"
 ],
 correct: 0
 },
 {
-question: "What role does AI play in digital marketing?",
+question: "What role does AI play in Digital Marketing?",
 options: [
 "Automates targeting and optimization",
 "Reduces visibility",
 "Blocks engagement",
-"Eliminates marketing"
+"Eliminates campaigns"
 ],
 correct: 0
 },
@@ -55,9 +55,9 @@ correct: 0
 question: "Which metric measures campaign success?",
 options: [
 "Conversion Rate",
-"Temperature",
-"Weather forecast",
-"Paper quality"
+"Weather temperature",
+"Paper thickness",
+"Building height"
 ],
 correct: 0
 },
@@ -72,12 +72,12 @@ options: [
 correct: 0
 },
 {
-question: "Digital funnel starts with?",
+question: "Digital marketing funnel starts with?",
 options: [
 "Awareness",
 "Action",
-"Desire",
-"Retention"
+"Retention",
+"Purchase"
 ],
 correct: 0
 },
@@ -86,8 +86,8 @@ question: "ROI stands for?",
 options: [
 "Return on Investment",
 "Rate of Instagram",
-"Reach on Internet",
-"Random Online Index"
+"Reach of Internet",
+"Revenue of Index"
 ],
 correct: 0
 },
@@ -101,6 +101,6 @@ options: [
 ],
 correct: 0
 }
-],
+]
 
 };
