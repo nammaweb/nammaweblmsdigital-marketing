@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { db } from "../../lib/firebase";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export default function LoginPage() {
 
@@ -9,8 +11,11 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+
+    setError("");
 
     if (!name.trim()) {
       setError("Please enter your full name");
@@ -22,8 +27,34 @@ export default function LoginPage() {
       return;
     }
 
-    localStorage.setItem("studentName", name);
-    router.push("/dashboard");
+    try {
+
+      setLoading(true);
+
+      const studentRef = doc(db, "students", name.trim());
+      const snap = await getDoc(studentRef);
+
+      if (!snap.exists()) {
+        // Create new student record
+        await setDoc(studentRef, {
+          name: name.trim(),
+          currentDay: 1,
+          totalScore: 0,
+          totalCompletedLessons: 0,
+          rankPoints: 0,
+          createdAt: new Date()
+        });
+      }
+
+      localStorage.setItem("studentName", name.trim());
+      router.push("/dashboard");
+
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Something went wrong. Try again.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -102,17 +133,18 @@ export default function LoginPage() {
 
           <button
             onClick={handleLogin}
+            disabled={loading}
             style={{
               width: "100%",
               padding: "12px",
               marginTop: "20px",
-              background: "#2563eb",
+              background: loading ? "#94a3b8" : "#2563eb",
               color: "white",
               border: "none",
               cursor: "pointer"
             }}
           >
-            Access LMS
+            {loading ? "Checking..." : "Access LMS"}
           </button>
 
           <p style={{ marginTop: "10px", fontSize: "12px", textAlign: "center" }}>
