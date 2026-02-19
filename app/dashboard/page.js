@@ -26,6 +26,7 @@ export default function Dashboard() {
 
   return (
     <div style={{ padding: "40px" }}>
+
       <h1>Welcome, {student.name}</h1>
 
       <h3>Progress: {progress.toFixed(1)}%</h3>
@@ -35,7 +36,8 @@ export default function Dashboard() {
         height: "20px",
         background: "#1e293b",
         borderRadius: "10px",
-        overflow: "hidden"
+        overflow: "hidden",
+        marginBottom: "20px"
       }}>
         <div style={{
           width: `${progress}%`,
@@ -44,16 +46,22 @@ export default function Dashboard() {
         }} />
       </div>
 
-      <br />
-      <a href="/course">Go to Course</a>
-      <br />
-      <a href="/leaderboard">View Leaderboard</a>
+      <div style={{ marginTop: "20px" }}>
+        <a href="/course">📘 Continue Learning</a>
+      </div>
+
+      <div style={{ marginTop: "10px" }}>
+        <a href="/leaderboard">🏆 Leaderboard</a>
+      </div>
+
+      <div style={{ marginTop: "10px" }}>
+        <a href="/final-exam">🎓 Take Final Exam</a>
+      </div>
+
+      <div style={{ marginTop: "10px" }}>
+        <a href="/certificate">📜 View Certificate</a>
+      </div>
+
     </div>
   );
 }
-
-<br />
-<a href="/final-exam">Take Final Exam</a>
-<br />
-<a href="/certificate">View Certificate</a>
-
