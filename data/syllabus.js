@@ -328,3 +328,251 @@ Optimize LinkedIn profile.
 }
 
 };
+16: {
+title: "Instagram Growth Strategy",
+video: "https://www.youtube.com/embed/BsDoLVMnmZs",
+notes: `
+INSTAGRAM ALGORITHM
+• Engagement rate
+• Watch time
+• Saves & Shares
+• Hook in first 3 seconds
+
+CONTENT TYPES
+• Reels
+• Carousels
+• Stories
+• Lives
+
+CASE STUDY
+Influencers grow by consistent niche positioning.
+
+NAMMA WEB TASK
+Create 5 reel ideas promoting AI Marketing course.
+
+ASSIGNMENT
+Write 5 reel scripts with hooks.
+`
+},
+
+17: {
+title: "Reels & Short Video Algorithm",
+video: "https://www.youtube.com/embed/jT5zQ1S4kCk",
+notes: `
+ALGORITHM FACTORS
+• Completion rate
+• Replay rate
+• Share ratio
+
+STRUCTURE
+Hook → Value → CTA
+
+ASSIGNMENT
+Record 1 educational reel draft.
+`
+},
+
+18: {
+title: "YouTube SEO",
+video: "https://www.youtube.com/embed/0n8xvVn3BzM",
+notes: `
+OPTIMIZE
+• Title
+• Description
+• Tags
+• Thumbnail CTR
+
+CASE STUDY
+MrBeast optimizes thumbnails for click psychology.
+
+ASSIGNMENT
+Create optimized YouTube title & description.
+`
+},
+
+19: {
+title: "Email Marketing Strategy",
+video: "https://www.youtube.com/embed/5lqVvKxXq0g",
+notes: `
+EMAIL TYPES
+• Welcome
+• Nurture
+• Sales
+• Re-engagement
+
+TOOLS
+• Mailchimp
+• ConvertKit
+• HubSpot
+
+ASSIGNMENT
+Write 3-email nurture sequence.
+`
+},
+
+20: {
+title: "Landing Page Optimization",
+video: "https://www.youtube.com/embed/3uYw6pN9x4M",
+notes: `
+LANDING PAGE ELEMENTS
+• Strong headline
+• Social proof
+• CTA
+• Scarcity
+
+CASE STUDY
+HubSpot increases conversion via A/B testing.
+
+ASSIGNMENT
+Design landing page wireframe.
+`
+},
+
+21: {
+title: "Conversion Rate Optimization (CRO)",
+video: "https://www.youtube.com/embed/Qq0K9v1gR8Y",
+notes: `
+CRO METRICS
+• Bounce rate
+• Session duration
+• Conversion %
+
+TOOLS
+• Google Optimize
+• Hotjar
+
+ASSIGNMENT
+Suggest 5 CRO improvements for Namma Web.
+`
+},
+
+22: {
+title: "Google Analytics Deep Dive",
+video: "https://www.youtube.com/embed/V3nQpM7gQd4",
+notes: `
+TRACK
+• Users
+• Traffic sources
+• Conversion paths
+
+ASSIGNMENT
+Explain difference between direct and organic traffic.
+`
+},
+
+23: {
+title: "Google Search Console",
+video: "https://www.youtube.com/embed/tl4x9W1zJdE",
+notes: `
+CHECK
+• Indexing issues
+• Search queries
+• CTR
+
+ASSIGNMENT
+List 5 queries ranking for digital marketing.
+`
+},
+
+24: {
+title: "Schema & Structured Data",
+video: "https://www.youtube.com/embed/9XjP2w7mQ0A",
+notes: `
+SCHEMA TYPES
+• FAQ
+• Review
+• Organization
+
+ASSIGNMENT
+Create FAQ schema for course page.
+`
+},
+
+25: {
+title: "Local SEO Strategy",
+video: "https://www.youtube.com/embed/FnA0a8W6kZQ",
+notes: `
+OPTIMIZE
+• Google Business Profile
+• Local citations
+• Reviews
+
+ASSIGNMENT
+Optimize Namma Web Google profile strategy.
+`
+},
+
+26: {
+title: "Backlink Building Strategy",
+video: "https://www.youtube.com/embed/Kz7eL9v2t6Y",
+notes: `
+BACKLINK TYPES
+• Guest posting
+• Niche edits
+• PR links
+
+ASSIGNMENT
+Find 5 guest posting opportunities.
+`
+},
+
+27: {
+title: "Authority Building",
+video: "https://www.youtube.com/embed/Uq0P4w8kJ6E",
+notes: `
+BUILD AUTHORITY VIA
+• Content depth
+• Social proof
+• Media mentions
+
+ASSIGNMENT
+Draft PR strategy.
+`
+},
+
+28: {
+title: "Content Calendar & Planning",
+video: "https://www.youtube.com/embed/Xm2c9Z1qQ3A",
+notes: `
+PLAN
+• Weekly themes
+• Platform-based content
+• Campaign cycles
+
+ASSIGNMENT
+Create 30-day content calendar.
+`
+},
+
+29: {
+title: "AI Content Automation",
+video: "https://www.youtube.com/embed/q0YxP5n4B7M",
+notes: `
+TOOLS
+• ChatGPT
+• Jasper
+• Canva AI
+• Midjourney
+
+AUTOMATION WORKFLOW
+Idea → Script → Design → Publish → Analyze
+
+ASSIGNMENT
+Create AI workflow for content.
+`
+},
+
+30: {
+title: "Full SEO Audit Project",
+video: "https://www.youtube.com/embed/Rm3kW9pX8tQ",
+notes: `
+AUDIT STEPS
+• Technical check
+• Keyword gaps
+• Backlink profile
+• Competitor comparison
+
+FINAL TASK
+Prepare complete SEO audit report for Namma Web.
+`
+},
