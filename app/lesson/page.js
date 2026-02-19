@@ -59,7 +59,7 @@ export default function Lesson() {
 
     setScore(calculatedScore);
 
-    if (calculatedScore >= 40 && day === currentDay) {
+   if (calculatedScore >= 40 && Number(day) === Number(currentDay))
 
       const snap = await getDoc(doc(db, "students", name));
       const data = snap.data();
