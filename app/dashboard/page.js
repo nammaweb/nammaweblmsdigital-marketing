@@ -1,81 +1,53 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { db } from "../../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-export default function DashboardPage() {
-  const [name, setName] = useState("");
+export default function Dashboard() {
+
+  const [student, setStudent] = useState(null);
 
   useEffect(() => {
-    const storedName = localStorage.getItem("studentName");
-    if (storedName) setName(storedName);
+    const fetchData = async () => {
+      const name = localStorage.getItem("studentName");
+      if (!name) return;
+
+      const snap = await getDoc(doc(db, "students", name));
+      if (snap.exists()) setStudent(snap.data());
+    };
+
+    fetchData();
   }, []);
 
+  if (!student) return <h1>Loading...</h1>;
+
+  const progress = (student.totalCompletedLessons / 60) * 100;
+
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "linear-gradient(135deg, #0f172a, #1e293b)",
-      color: "white",
-      padding: "40px",
-      fontFamily: "Arial"
-    }}>
-      
-      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
-        Welcome, {name} 👋
-      </h1>
+    <div style={{ padding: "40px" }}>
+      <h1>Welcome, {student.name}</h1>
 
-      <p style={{ opacity: 0.8 }}>
-        Namma Web Digital Marketing & AI LMS
-      </p>
+      <h3>Progress: {progress.toFixed(1)}%</h3>
+      <p>Total Score: {student.totalScore}</p>
 
-      {/* Course Card */}
       <div style={{
-        marginTop: "40px",
-        padding: "30px",
-        borderRadius: "16px",
-        background: "rgba(255,255,255,0.08)",
-        backdropFilter: "blur(10px)",
-        transition: "0.3s",
+        height: "20px",
+        background: "#1e293b",
+        borderRadius: "10px",
+        overflow: "hidden"
       }}>
-        <h2>📚 Digital Marketing Using AI (6 Months)</h2>
-        <p>
-          60 Classes • Theory + Practical • Live Namma Web Projects
-        </p>
-
-        <button
-          onClick={() => {
-            window.location.href = "/course";
-          }}
-          style={{
-            marginTop: "20px",
-            padding: "12px 25px",
-            background: "#22c55e",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: "bold"
-          }}
-        >
-          Continue Learning →
-        </button>
+        <div style={{
+          width: `${progress}%`,
+          background: "#22c55e",
+          height: "100%"
+        }} />
       </div>
 
-      {/* Placement Section */}
-      <div style={{
-        marginTop: "40px",
-        padding: "30px",
-        borderRadius: "16px",
-        background: "rgba(255,255,255,0.08)"
-      }}>
-        <h2>💼 Placement Opportunities</h2>
-        <p>
-          Top Companies: Zoho, TCS Digital, Accenture, Infosys, Startups
-        </p>
-        <p>
-          Up to 4 LPA based on performance & live project contribution.
-        </p>
-      </div>
-
+      <br />
+      <a href="/course">Go to Course</a>
+      <br />
+      <a href="/leaderboard">View Leaderboard</a>
     </div>
   );
 }
