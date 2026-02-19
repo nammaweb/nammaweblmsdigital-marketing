@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
         style={{
           margin: 0,
           fontFamily: "Inter, sans-serif",
-          background: "linear-gradient(135deg, #0f172a, #1e293b)",
+          background: "linear-gradient(135deg,#0f172a,#1e293b)",
           color: "white"
         }}
       >
