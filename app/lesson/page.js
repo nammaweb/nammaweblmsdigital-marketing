@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
+import { db } from "../../lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const syllabus = Array.from({ length: 60 }, (_, i) => ({
