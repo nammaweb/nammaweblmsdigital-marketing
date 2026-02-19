@@ -1,5 +1,5 @@
 "use client";
-
+import { dailyQuestions } from "../../data/questions";
 import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
