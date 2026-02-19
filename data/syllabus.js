@@ -1,12 +1,5 @@
 export const syllabus = {};
 
-const modules = {
-  1: "Foundations",
-  2: "SEO & Content Mastery",
-  3: "Paid Ads & Analytics",
-  4: "AI & Live Project"
-};
-
 const topics = [
   "Digital Marketing Ecosystem",
   "Customer Psychology",
@@ -71,44 +64,23 @@ const topics = [
 ];
 
 for (let i = 1; i <= 60; i++) {
-
   syllabus[i] = {
     title: topics[i - 1],
     video: "https://www.youtube.com/embed/6mbwJ2xhgzM",
     notes: `
-Module: ${i <= 15 ? modules[1] : i <= 30 ? modules[2] : i <= 45 ? modules[3] : modules[4]}
-
 Day ${i}: ${topics[i - 1]}
 
-Explanation:
-This session covers strategic digital marketing implementation 
-with real business applications and AI tools integration.
+Detailed Explanation:
+This topic explains professional digital marketing execution
+with AI integration and real-world examples.
 
-Company Examples:
+Company Case Studies:
 • Amazon personalization engine
 • Netflix recommendation AI
 • Nike ad automation
-• HubSpot marketing funnels
+• HubSpot funnel optimization
 
-Mentor Talking Points:
-• Why this topic matters in 2025
-• How AI enhances this area
-• Practical business use case
-• How Namma Web can implement it
-
-Practical Application:
-Students apply today’s concept directly to Namma Web 
-AI Courses / School Automation / Exam AI products.
-    `,
-    quiz: Array.from({ length: 10 }, (_, q) => ({
-      question: `Question ${q + 1} related to ${topics[i - 1]}?`,
-      options: [
-        "Option A",
-        "Option B",
-        "Option C",
-        "Option D"
-      ],
-      correct: 1
-    }))
+Apply today's concept to Namma Web digital strategy.
+`
   };
 }
