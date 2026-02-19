@@ -819,3 +819,259 @@ ASSIGNMENT
 Submit complete paid strategy presentation.
 `
 },
+46: {
+title: "AI Marketing Tools Deep Dive",
+video: "https://www.youtube.com/embed/k7gKj8xM2wE",
+notes: `
+AI TOOLS IN MARKETING
+• ChatGPT (Content & Strategy)
+• Jasper AI
+• Midjourney (Image Creation)
+• Canva AI
+• Notion AI
+
+APPLICATION
+Automate:
+• Blog writing
+• Ad copy
+• Email sequences
+• Social media captions
+
+ASSIGNMENT
+Create AI workflow for Namma Web marketing.
+`
+},
+
+47: {
+title: "Advanced Prompt Engineering",
+video: "https://www.youtube.com/embed/m4eZqKpX9nA",
+notes: `
+PROMPT STRUCTURE
+• Role definition
+• Clear objective
+• Context
+• Output format
+
+EXAMPLE
+"Act as a digital marketing strategist and create..."
+
+ASSIGNMENT
+Write 5 advanced prompts for marketing.
+`
+},
+
+48: {
+title: "AI Image & Video Creation",
+video: "https://www.youtube.com/embed/d5QnVx9kP2M",
+notes: `
+TOOLS
+• Midjourney
+• DALL·E
+• Canva AI Video
+• Runway ML
+
+CASE STUDY
+Brands now generate creatives via AI.
+
+ASSIGNMENT
+Create 3 AI-generated ad concepts.
+`
+},
+
+49: {
+title: "Marketing Automation Systems",
+video: "https://www.youtube.com/embed/Qk5mP7vX8tA",
+notes: `
+AUTOMATION TOOLS
+• Zapier
+• HubSpot
+• ActiveCampaign
+
+FLOW
+Lead form → Email → CRM → Follow-up → Sales call
+
+ASSIGNMENT
+Design automation funnel.
+`
+},
+
+50: {
+title: "CRM & Lead Management",
+video: "https://www.youtube.com/embed/Wk8mX3qP9tE",
+notes: `
+CRM PURPOSE
+Track:
+• Leads
+• Follow-ups
+• Conversion stages
+
+CASE STUDY
+Salesforce automates customer tracking.
+
+ASSIGNMENT
+Create simple lead tracking sheet.
+`
+},
+
+51: {
+title: "Growth Hacking Strategies",
+video: "https://www.youtube.com/embed/Jm5kY2pX8wQ",
+notes: `
+GROWTH HACKING
+Rapid experimentation across:
+• Marketing
+• Product
+• Sales
+
+EXAMPLES
+Dropbox referral program.
+Uber promo expansion.
+
+ASSIGNMENT
+Suggest 3 growth hacks for Namma Web.
+`
+},
+
+52: {
+title: "Full Digital Strategy Blueprint",
+video: "https://www.youtube.com/embed/x3P9mK5vQ8A",
+notes: `
+INCLUDE
+• SEO
+• Content
+• Ads
+• Automation
+• Analytics
+
+FINAL STRATEGY DRAFT
+Prepare 90-day digital strategy for Namma Web.
+
+ASSIGNMENT
+Submit strategy document.
+`
+},
+
+53: {
+title: "Live Campaign Execution",
+video: "https://www.youtube.com/embed/p8XkY3mQ7tE",
+notes: `
+EXECUTE:
+• Publish blog
+• Run ads
+• Post LinkedIn
+• Track analytics
+
+ASSIGNMENT
+Run small mock campaign and report.
+`
+},
+
+54: {
+title: "Data Analysis & Interpretation",
+video: "https://www.youtube.com/embed/r5mX2kP9wE",
+notes: `
+ANALYZE
+• Traffic trends
+• Ad performance
+• Engagement rates
+
+ASSIGNMENT
+Prepare data summary report.
+`
+},
+
+55: {
+title: "Case Study Documentation",
+video: "https://www.youtube.com/embed/Nv3kX8pQ2tE",
+notes: `
+DOCUMENT:
+• Objective
+• Strategy
+• Execution
+• Results
+
+ASSIGNMENT
+Prepare Namma Web campaign case study.
+`
+},
+
+56: {
+title: "Portfolio Building",
+video: "https://www.youtube.com/embed/k9mX3vQ8pT",
+notes: `
+PORTFOLIO SHOULD INCLUDE:
+• SEO audit
+• Ad strategy
+• Case study
+• LinkedIn proof
+• Analytics report
+
+ASSIGNMENT
+Compile portfolio.
+`
+},
+
+57: {
+title: "Mock Interview Preparation",
+video: "https://www.youtube.com/embed/Qx7mP8kV3tE",
+notes: `
+COMMON QUESTIONS
+• Explain SEO.
+• What is ROAS?
+• How do you scale ads?
+• Explain conversion funnel.
+
+ASSIGNMENT
+Prepare interview answers.
+`
+},
+
+58: {
+title: "Resume & LinkedIn Optimization",
+video: "https://www.youtube.com/embed/Yp5kV8mX3tE",
+notes: `
+OPTIMIZE:
+• Headline
+• Skills
+• Project descriptions
+• Metrics-based achievements
+
+ASSIGNMENT
+Update resume with metrics.
+`
+},
+
+59: {
+title: "Final Revision & Masterclass",
+video: "https://www.youtube.com/embed/Vk9mX3pQ7tE",
+notes: `
+REVISE:
+• SEO
+• Ads
+• Automation
+• AI tools
+• Reporting
+
+Prepare for final certification exam.
+`
+},
+
+60: {
+title: "Final Certification Exam",
+video: "https://www.youtube.com/embed/zp3kV9mQ2tE",
+notes: `
+FINAL EXAM STRUCTURE
+• 50 Questions
+• Minimum 70% to pass
+• Certificate issued upon completion
+
+PLACEMENT OPPORTUNITY
+Students scoring high may be considered for:
+• Digital Marketing Executive
+• Performance Marketer
+• SEO Analyst
+• Campaign Manager
+
+Final evaluation depends on performance and project quality.
+`
+},
