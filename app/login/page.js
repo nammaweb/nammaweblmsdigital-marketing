@@ -5,81 +5,51 @@ import { useRouter } from "next/navigation";
 import { db } from "../../lib/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
-export default function LoginPage() {
+export default function Login() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const handleLogin = async () => {
-    setError("");
-
-    if (!name.trim()) {
-      setError("Please enter your name");
-      return;
-    }
 
     if (password !== "9241") {
-      setError("Invalid password");
+      alert("Wrong password");
       return;
     }
 
-    try {
-      const studentRef = doc(db, "students", name);
-      const studentSnap = await getDoc(studentRef);
+    const studentRef = doc(db, "students", name);
+    const snap = await getDoc(studentRef);
 
-      if (!studentSnap.exists()) {
-        await setDoc(studentRef, {
-          name: name,
-          currentDay: 1,
-          assignmentsCompleted: 0,
-          createdAt: new Date()
-        });
-      }
-
-      localStorage.setItem("studentName", name);
-      router.push("/dashboard");
-
-    } catch (err) {
-      setError("Login failed. Check Firebase setup.");
-      console.error(err);
+    if (!snap.exists()) {
+      await setDoc(studentRef, {
+        name,
+        currentDay: 1,
+        totalScore: 0,
+        totalCompletedLessons: 0,
+        finalExamPassed: false,
+        rankPoints: 0
+      });
     }
+
+    localStorage.setItem("studentName", name);
+    router.push("/dashboard");
   };
 
   return (
     <div style={{ padding: "40px" }}>
-      <h1>Namma Web LMS Login</h1>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
+      <h1>Login</h1>
       <input
-        type="text"
-        placeholder="Enter your name"
-        value={name}
+        placeholder="Name"
         onChange={(e) => setName(e.target.value)}
-        style={{ display: "block", marginBottom: "10px", padding: "8px" }}
       />
-
+      <br /><br />
       <input
         type="password"
-        placeholder="Enter password"
-        value={password}
+        placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
-        style={{ display: "block", marginBottom: "10px", padding: "8px" }}
       />
-
-      <button
-        onClick={handleLogin}
-        style={{
-          padding: "10px 20px",
-          background: "#2563eb",
-          color: "white",
-          border: "none",
-          borderRadius: "5px"
-        }}
-      >
-        Login
-      </button>
+      <br /><br />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
