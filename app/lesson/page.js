@@ -1,148 +1,116 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* ===========================
-   FULL SYLLABUS (DAY 1–30)
+   FULL ORDERED SYLLABUS
 =========================== */
 
 const syllabus = [
   {
     day: 1,
     title: "Introduction to Digital Marketing",
-    definition: "Digital Marketing is promoting products and services using the internet.",
     notes: [
+      "What is Digital Marketing?",
       "Traditional vs Digital Marketing",
-      "Why businesses go online",
+      "Why businesses need online presence",
       "Career scope in Digital Marketing"
     ],
-    questions: [
-      "Why did you choose Digital Marketing?",
-      "Where do you search before buying something?"
-    ]
+    assignment: "Explain why Digital Marketing is important for Namma Web."
   },
   {
     day: 2,
     title: "Understanding Online Customers",
-    definition: "Customer behaviour explains how users think and act online.",
     notes: [
       "Customer journey",
-      "Search intent",
-      "Trust factors"
+      "Search behaviour",
+      "Trust building",
+      "Decision making process"
     ],
-    questions: [
-      "How do students search for courses?",
-      "What makes you trust a website?"
-    ]
+    assignment: "Explain how students search for Digital Marketing courses online."
   },
   {
     day: 3,
     title: "Digital Marketing Channels",
-    definition: "Channels are platforms used to reach customers online.",
     notes: [
       "SEO",
-      "Social Media",
+      "Social Media Marketing",
       "Paid Ads",
       "Email Marketing"
     ],
-    questions: [
-      "Which channel do you use most?",
-      "Why is SEO important?"
-    ]
+    assignment: "List which channels Namma Web should focus on and why."
   },
   {
     day: 4,
     title: "Introduction to SEO",
-    definition: "SEO improves website visibility on Google.",
     notes: [
-      "What is SEO",
-      "Why SEO matters",
-      "Examples of SEO"
+      "What is SEO?",
+      "How Google ranks websites",
+      "Organic vs Paid traffic",
+      "Benefits of SEO"
     ],
-    questions: [
-      "Why SEO is long-term?",
-      "What happens without SEO?"
-    ]
+    assignment: "Explain how SEO can help Namma Web grow."
   },
   {
     day: 5,
-    title: "Keyword Research Basics",
-    definition: "Keyword research finds what users search on Google.",
+    title: "Keyword Research",
     notes: [
-      "Short-tail keywords",
-      "Long-tail keywords",
-      "Search intent"
+      "What are keywords?",
+      "Short tail vs Long tail keywords",
+      "Search intent",
+      "Finding keywords for Namma Web"
     ],
-    questions: [
-      "Which keyword suits Namma Web?",
-      "Why long-tail keywords convert?"
-    ]
+    assignment: "Find 5 keywords suitable for Namma Web."
   }
-  // Day 6–30 will extend exactly the same way
 ];
 
 export default function LessonPage() {
-  const params = useSearchParams();
-  const router = useRouter();
+  const [day, setDay] = useState(1);
 
-  const day = Number(params.get("day")) || 1;
+  // 🔥 Read day directly from URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const d = Number(params.get("day")) || 1;
+    setDay(d);
+  }, []);
+
   const lesson = syllabus.find(l => l.day === day);
 
-  const [completed, setCompleted] = useState(false);
-
   if (!lesson) {
-    return <h1>Lesson not found</h1>;
+    return <h1>Lesson Not Found</h1>;
   }
 
   return (
-    <div>
+    <div style={{ padding: "40px" }}>
       <h1>Day {lesson.day}: {lesson.title}</h1>
 
-      <h2>📘 Definition</h2>
-      <p>{lesson.definition}</p>
-
-      <h2>📝 Notes</h2>
+      <h2>📘 Notes</h2>
       <ul>
-        {lesson.notes.map((n, i) => (
-          <li key={i}>{n}</li>
+        {lesson.notes.map((note, index) => (
+          <li key={index}>{note}</li>
         ))}
       </ul>
 
-      <h2>❓ Assessment Questions</h2>
-      <ol>
-        {lesson.questions.map((q, i) => (
-          <li key={i}>{q}</li>
-        ))}
-      </ol>
-
       <h2>🛠 Assignment</h2>
+      <p>{lesson.assignment}</p>
       <p>
-        Answer and mail to:<br />
+        Send your answers to:<br />
         <strong>nammaweb.assist@gmail.com</strong>
       </p>
 
-      <label>
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={() => setCompleted(!completed)}
-        />{" "}
-        I have completed today’s assignment
-      </label>
-
-      <br /><br />
+      <br />
 
       <button
-        disabled={!completed}
-        onClick={() => router.push(`/lesson?day=${day + 1}`)}
+        onClick={() => {
+          window.location.href = `/lesson?day=${day + 1}`;
+        }}
         style={{
-          padding: "14px 24px",
-          background: completed ? "#16a34a" : "#9ca3af",
+          padding: "12px 20px",
+          background: "#16a34a",
           color: "white",
           border: "none",
-          borderRadius: "10px",
-          cursor: completed ? "pointer" : "not-allowed"
+          borderRadius: "8px",
+          cursor: "pointer"
         }}
       >
         Proceed to Day {day + 1} ▶
