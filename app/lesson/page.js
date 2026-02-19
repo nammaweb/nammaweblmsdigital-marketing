@@ -4,22 +4,53 @@ import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
-const syllabus = Array.from({ length: 60 }, (_, i) => ({
-  day: i + 1,
-  title:
-    i < 30
-      ? `Theory Topic ${i + 1}`
-      : `Live Project Task ${i + 1}`,
-  content:
-    i < 30
-      ? "Learn advanced digital marketing strategies using AI tools."
-      : "Apply strategies practically for Namma Web digital growth."
-}));
+const syllabus = {
+  1: {
+    title: "Digital Marketing Fundamentals",
+    youtube: "https://www.youtube.com/embed/6mbwJ2xhgzM",
+    notes: [
+      "Digital marketing promotes products using online platforms.",
+      "Includes SEO, Social Media, Ads, Email Marketing.",
+      "AI tools reduce content production time drastically.",
+      "ROI is measurable in digital platforms."
+    ],
+    quiz: [
+      "What is digital marketing?",
+      "Difference between traditional and digital marketing?",
+      "Name 3 digital marketing platforms.",
+      "Why is SEO important?",
+      "How does AI help marketers?"
+    ],
+    assignment:
+      "Write 1 LinkedIn post introducing Namma Web and explain why AI marketing is important."
+  },
+
+  2: {
+    title: "Customer Psychology & Online Behaviour",
+    youtube: "https://www.youtube.com/embed/9No-FiEInLA",
+    notes: [
+      "Customer journey has awareness, consideration, decision stages.",
+      "Trust signals increase conversions.",
+      "Gen-Z prefers short video content.",
+      "Emotional triggers improve marketing."
+    ],
+    quiz: [
+      "What is customer journey?",
+      "What builds trust online?",
+      "Why Gen-Z prefers reels?",
+      "Define conversion.",
+      "Explain emotional trigger."
+    ],
+    assignment:
+      "Create an Instagram reel script promoting Namma Web AI Course."
+  }
+};
 
 export default function LessonPage() {
   const [day, setDay] = useState(1);
   const [name, setName] = useState("");
   const [currentDay, setCurrentDay] = useState(1);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -43,48 +74,76 @@ export default function LessonPage() {
     fetchProgress();
   }, []);
 
-  const lesson = syllabus.find(l => l.day === day);
+  const lesson = syllabus[day];
 
-  const markComplete = async () => {
-    if (day >= currentDay) {
+  const handleQuizSubmit = async () => {
+    if (score >= 20 && day >= currentDay) {
       const studentRef = doc(db, "students", name);
       await updateDoc(studentRef, {
-        currentDay: currentDay + 1,
-        assignmentsCompleted: currentDay
+        currentDay: currentDay + 1
       });
-      alert("Assignment marked complete. Next day unlocked!");
+      alert("Quiz passed! Next day unlocked.");
       window.location.href = "/course";
+    } else {
+      alert("Score must be 20+ to unlock next day.");
     }
   };
 
-  if (day > currentDay) {
-    return <h1>🔒 This lesson is locked.</h1>;
-  }
+  if (!lesson) return <h1>Content Coming Soon</h1>;
+
+  if (day > currentDay) return <h1>🔒 This lesson is locked.</h1>;
 
   return (
     <div style={{ padding: "40px" }}>
-      <h1>Day {lesson.day}: {lesson.title}</h1>
-      <p>{lesson.content}</p>
+      <h1>Day {day}: {lesson.title}</h1>
 
-      <h3>Assignment:</h3>
-      <p>
-        Apply this topic for Namma Web and email your work to:
-        <strong> nammaweb.assist@gmail.com</strong>
-      </p>
+      <iframe
+        width="100%"
+        height="300"
+        src={lesson.youtube}
+        title="YouTube video"
+        allowFullScreen
+      />
+
+      <h2>📘 Notes</h2>
+      <ul>
+        {lesson.notes.map((note, index) => (
+          <li key={index}>{note}</li>
+        ))}
+      </ul>
+
+      <h2>📝 Quiz (25 Marks)</h2>
+      {lesson.quiz.map((q, index) => (
+        <div key={index}>
+          <p>{q}</p>
+          <input
+            type="checkbox"
+            onChange={(e) => {
+              if (e.target.checked) setScore(score + 5);
+            }}
+          />
+          Correct Answer
+        </div>
+      ))}
 
       <button
-        onClick={markComplete}
+        onClick={handleQuizSubmit}
         style={{
           marginTop: "20px",
           padding: "10px 20px",
-          background: "#22c55e",
+          background: "#2563eb",
           color: "white",
-          border: "none",
-          borderRadius: "6px"
+          border: "none"
         }}
       >
-        Mark as Complete
+        Submit Quiz
       </button>
+
+      <h2>🛠 Assignment</h2>
+      <p>{lesson.assignment}</p>
+      <p>
+        Submit to: <strong>nammaweb.assist@gmail.com</strong>
+      </p>
     </div>
   );
 }
